@@ -1,5 +1,8 @@
 package com.gatesma.ConcurrentTest;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * Copyright (C), 2020
  * FileName: TestVolatile
@@ -11,6 +14,9 @@ package com.gatesma.ConcurrentTest;
 public class TestVolatile {
 
     public static void main(String[] args) {
+
+        Lock lock = new ReentrantLock();
+
         ThreadDemo td = new ThreadDemo();
         new Thread(td).start();
         while(true) {
@@ -19,6 +25,27 @@ public class TestVolatile {
                 break;
             }
         }
+        Number number = new Number() {
+            @Override
+            public int intValue() {
+                return 0;
+            }
+
+            @Override
+            public long longValue() {
+                return 0;
+            }
+
+            @Override
+            public float floatValue() {
+                return 0;
+            }
+
+            @Override
+            public double doubleValue() {
+                return 0;
+            }
+        };
     }
 
 
@@ -26,7 +53,8 @@ public class TestVolatile {
 }
 
 class ThreadDemo implements Runnable {
-    private boolean flag = false;
+
+    private volatile boolean flag = false;
 
     @Override
     public void run() {
