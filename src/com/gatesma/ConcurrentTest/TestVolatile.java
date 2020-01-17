@@ -1,5 +1,8 @@
 package com.gatesma.ConcurrentTest;
 
+import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -46,6 +49,10 @@ public class TestVolatile {
                 return 0;
             }
         };
+
+        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(2, 3, 60, TimeUnit.SECONDS, new PriorityBlockingQueue<>());
+
+
     }
 
 
